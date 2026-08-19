@@ -6,37 +6,440 @@
 <meta name="theme-color" content="#02050b">
 <title>我们的七夕 · 2026</title>
 <style>
-:root{--bg-brightness:.08;--bg-saturation:.82;--scene-warmth:0;--rocket-x:50%;--rocket-y:64%;--rocket-glow:0}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#010307;color:#fff8e9;font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif}button{font:inherit}#app{position:relative;width:100vw;height:100dvh;min-height:100vh;overflow:hidden;background:#010307;isolation:isolate}
-.bg{position:absolute;inset:-2px;z-index:0;background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.012);filter:brightness(var(--bg-brightness)) saturate(var(--bg-saturation)) contrast(1.06);will-change:filter}.bg-tone{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 74%,rgba(255,175,55,calc(var(--scene-warmth)*.13)),transparent 38%),linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.02) 52%,rgba(0,0,0,.14));mix-blend-mode:screen}.rocket-light{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:var(--rocket-glow);background:radial-gradient(circle at var(--rocket-x) var(--rocket-y),rgba(255,249,211,.98) 0 .8%,rgba(255,221,130,.74) 1.6%,rgba(255,184,58,.38) 4.5%,rgba(255,151,30,.18) 9%,rgba(255,133,20,.07) 16%,transparent 27%);mix-blend-mode:screen;will-change:opacity,background}.rocket-cast{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:calc(var(--rocket-glow)*.92);background:radial-gradient(ellipse at 50% 76%,rgba(255,189,76,.26) 0 8%,rgba(255,155,39,.11) 18%,transparent 43%),linear-gradient(180deg,transparent 0 60%,rgba(255,181,61,.025) 66%,rgba(255,190,78,.10) 76%,rgba(255,160,40,.04) 88%,transparent 100%);mix-blend-mode:screen}.vignette{position:absolute;inset:0;z-index:20;pointer-events:none;background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.18) 70%,rgba(0,0,0,.48) 115%)}
-.scene{position:absolute;inset:0;z-index:12;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:28px}.intro .kicker{font-size:12px;letter-spacing:.31em;opacity:.52;margin-bottom:18px}.intro h1{margin:0;font-size:clamp(46px,11vw,108px);line-height:.96;font-weight:760;color:#fff7e3;text-shadow:0 0 30px rgba(255,241,205,.10)}.intro p{margin:20px 0 0;font-size:clamp(15px,3.8vw,22px);letter-spacing:.04em;opacity:.82}.intro .tiny{margin-top:10px;font-size:12px;opacity:.40;letter-spacing:.1em}.heart{display:inline-block;color:#f0b4b8;animation:heart 1.5s ease-in-out infinite}@keyframes heart{50%{transform:scale(1.15)}}
-.timeline{opacity:0;visibility:hidden}.timeline .caption{font-size:clamp(14px,3vw,20px);letter-spacing:.14em;opacity:.72}.timeline .days{font-size:clamp(84px,21vw,188px);line-height:.92;font-weight:780;color:#fff0bd;font-variant-numeric:tabular-nums;text-shadow:0 0 30px rgba(255,207,103,.15);margin:16px 0 6px}.timeline .unit{font-size:18px;opacity:.67}.timeline .current-date{margin-top:23px;font-size:clamp(16px,4vw,24px);font-variant-numeric:tabular-nums;letter-spacing:.08em}.progress{width:min(72vw,520px);height:4px;margin-top:22px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#fff0bd,#ffc65c);box-shadow:0 0 14px rgba(255,210,101,.55)}.start-end{width:min(72vw,520px);display:flex;justify-content:space-between;margin-top:10px;font-size:10px;opacity:.34;letter-spacing:.06em}
-.qixi-mark{opacity:0;visibility:hidden}.qixi-mark .date{font-size:clamp(16px,4vw,24px);letter-spacing:.18em;opacity:.66}.qixi-mark h2{margin:13px 0 0;font-size:clamp(48px,12vw,108px);font-weight:730;letter-spacing:.12em;color:#fff0c0;text-shadow:0 0 30px rgba(255,201,84,.16)}.qixi-mark p{font-size:14px;opacity:.48;margin-top:15px}
-.firework-layer{position:absolute;inset:0;z-index:8;pointer-events:none}.rocket{position:absolute;left:var(--rocket-x);top:var(--rocket-y);width:5px;height:22px;border-radius:999px;transform:translate(-50%,-50%);background:linear-gradient(180deg,#fffce6 0%,#ffe5a0 38%,#ffb637 100%);box-shadow:0 0 7px #fff4c1,0 0 19px rgba(255,183,60,.95),0 0 34px rgba(255,145,25,.52);opacity:0;will-change:left,top,opacity}.rocket::after{content:"";position:absolute;left:50%;top:14px;width:3px;height:105px;transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,237,183,.96),rgba(255,171,55,.54) 30%,rgba(255,137,24,.13) 64%,transparent);filter:blur(2px);border-radius:99px}.trail-spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffda7f;box-shadow:0 0 7px #ffc354;pointer-events:none}.particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffe8a8;box-shadow:0 0 6px #fff0b8,0 0 13px rgba(255,182,50,.8);pointer-events:none}.micro{width:2px;height:2px;background:#fff8db}.flash{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--rocket-x) var(--rocket-y),rgba(255,252,224,.95) 0 2%,rgba(255,215,118,.52) 5%,rgba(255,172,53,.19) 12%,transparent 30%);mix-blend-mode:screen}
-.final{opacity:0;visibility:hidden;justify-content:flex-start;padding-top:14vh}.final .small{font-size:11px;letter-spacing:.28em;opacity:.56;margin-bottom:13px}.final h3{margin:0;font-size:clamp(55px,14vw,126px);font-weight:760;letter-spacing:.1em;color:#fff2bf;text-shadow:0 0 18px rgba(255,236,176,.7),0 0 48px rgba(255,183,51,.42),0 0 90px rgba(255,128,17,.2)}.final p{margin:18px auto 0;max-width:560px;font-size:clamp(14px,3.5vw,20px);line-height:1.75;opacity:.84}.final .since{margin-top:12px;font-size:11px;letter-spacing:.1em;opacity:.48}.replay{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));right:18px;z-index:30;cursor:pointer;border:1px solid rgba(255,255,255,.22);background:rgba(2,8,18,.38);color:#f8f4e8;padding:9px 14px;border-radius:999px;backdrop-filter:blur(8px);opacity:0;visibility:hidden}
-@keyframes show{to{opacity:1;visibility:visible}}@keyframes fadeOut{to{opacity:0;visibility:hidden}}@keyframes introOut{to{opacity:0;visibility:hidden;transform:scale(.985)}}@keyframes hideUp{to{opacity:0;visibility:hidden;transform:translateY(-12px)}}body.play .intro{animation:introOut .8s ease 3s forwards}body.play .timeline{animation:show .55s ease 3.25s forwards,hideUp .72s ease 7.85s forwards}body.play .qixi-mark{animation:show .55s ease 8.12s forwards,fadeOut .55s ease 9.42s forwards}@media(max-width:520px){.bg{background-position:50% 50%}.final{padding-top:15vh}.final p{max-width:84vw}}@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}}
+:root{
+  --bg-brightness:.08;
+  --bg-saturation:.82;
+  --scene-warmth:0;
+  --rocket-x:50%;
+  --rocket-y:64%;
+  --rocket-glow:0;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#010307;color:#fff8e9;
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif}
+button{font:inherit}
+#app{position:relative;width:100vw;height:100dvh;min-height:100vh;overflow:hidden;background:#010307;isolation:isolate}
+
+/* 静态背景。整个亮度只由一个变量控制，防止不同动画互相打架。 */
+.bg{
+  position:absolute;inset:-2px;z-index:0;
+  background:url("https://cdn.nodeimage.com/i/7fUdUGjKXPCbOCwUsXUYmDyH1BK8jqhH.webp") center center/cover no-repeat;
+  transform:scale(1.012);
+  filter:brightness(var(--bg-brightness)) saturate(var(--bg-saturation)) contrast(1.06);
+  will-change:filter;
+}
+.bg-tone{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 74%,rgba(255,175,55,calc(var(--scene-warmth)*.13)),transparent 38%),
+    linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.02) 52%,rgba(0,0,0,.14));
+  mix-blend-mode:screen;
+}
+
+/* 和火箭使用完全同一组 x/y 变量，因此不会再错位。 */
+.rocket-light{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  opacity:var(--rocket-glow);
+  background:
+    radial-gradient(circle at var(--rocket-x) var(--rocket-y),
+      rgba(255,249,211,.98) 0 .8%,
+      rgba(255,221,130,.74) 1.6%,
+      rgba(255,184,58,.38) 4.5%,
+      rgba(255,151,30,.18) 9%,
+      rgba(255,133,20,.07) 16%,
+      transparent 27%);
+  mix-blend-mode:screen;
+  will-change:opacity,background;
+}
+.rocket-cast{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  opacity:calc(var(--rocket-glow) * .92);
+  background:
+    radial-gradient(ellipse at 50% 76%,
+      rgba(255,189,76,.26) 0 8%,
+      rgba(255,155,39,.11) 18%,
+      transparent 43%),
+    linear-gradient(180deg,
+      transparent 0 60%,
+      rgba(255,181,61,.025) 66%,
+      rgba(255,190,78,.10) 76%,
+      rgba(255,160,40,.04) 88%,
+      transparent 100%);
+  mix-blend-mode:screen;
+}
+.vignette{
+  position:absolute;inset:0;z-index:20;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.18) 70%,rgba(0,0,0,.48) 115%);
+}
+
+/* scenes */
+.scene{
+  position:absolute;inset:0;z-index:12;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;padding:28px;
+}
+.intro .kicker{font-size:12px;letter-spacing:.31em;opacity:.52;margin-bottom:18px}
+.intro h1{margin:0;font-size:clamp(46px,11vw,108px);line-height:.96;font-weight:760;color:#fff7e3;
+  text-shadow:0 0 30px rgba(255,241,205,.10)}
+.intro p{margin:20px 0 0;font-size:clamp(15px,3.8vw,22px);letter-spacing:.04em;opacity:.82}
+.intro .tiny{margin-top:10px;font-size:12px;opacity:.40;letter-spacing:.1em}
+.heart{display:inline-block;color:#f0b4b8;animation:heart 1.5s ease-in-out infinite}
+@keyframes heart{50%{transform:scale(1.15)}}
+
+.timeline{opacity:0;visibility:hidden}
+.timeline .caption{font-size:clamp(14px,3vw,20px);letter-spacing:.14em;opacity:.72}
+.timeline .days{font-size:clamp(84px,21vw,188px);line-height:.92;font-weight:780;color:#fff0bd;
+  font-variant-numeric:tabular-nums;text-shadow:0 0 30px rgba(255,207,103,.15);margin:16px 0 6px}
+.timeline .unit{font-size:18px;opacity:.67}
+.timeline .current-date{margin-top:23px;font-size:clamp(16px,4vw,24px);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.progress{width:min(72vw,520px);height:4px;margin-top:22px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#fff0bd,#ffc65c);box-shadow:0 0 14px rgba(255,210,101,.55)}
+.start-end{width:min(72vw,520px);display:flex;justify-content:space-between;margin-top:10px;font-size:10px;opacity:.34;letter-spacing:.06em}
+
+.qixi-mark{opacity:0;visibility:hidden}
+.qixi-mark .date{font-size:clamp(16px,4vw,24px);letter-spacing:.18em;opacity:.66}
+.qixi-mark h2{margin:13px 0 0;font-size:clamp(48px,12vw,108px);font-weight:730;letter-spacing:.12em;color:#fff0c0;
+  text-shadow:0 0 30px rgba(255,201,84,.16)}
+.qixi-mark p{font-size:14px;opacity:.48;margin-top:15px}
+
+/* firework */
+.firework-layer{position:absolute;inset:0;z-index:8;pointer-events:none}
+.rocket{
+  position:absolute;left:var(--rocket-x);top:var(--rocket-y);
+  width:5px;height:22px;border-radius:999px;transform:translate(-50%,-50%);
+  background:linear-gradient(180deg,#fffce6 0%,#ffe5a0 38%,#ffb637 100%);
+  box-shadow:0 0 7px #fff4c1,0 0 19px rgba(255,183,60,.95),0 0 34px rgba(255,145,25,.52);
+  opacity:0;will-change:left,top,opacity;
+}
+.rocket::after{
+  content:"";position:absolute;left:50%;top:14px;width:3px;height:105px;transform:translateX(-50%);
+  background:linear-gradient(180deg,rgba(255,237,183,.96),rgba(255,171,55,.54) 30%,rgba(255,137,24,.13) 64%,transparent);
+  filter:blur(2px);border-radius:99px
+}
+.trail-spark{
+  position:absolute;width:3px;height:3px;border-radius:50%;background:#ffda7f;
+  box-shadow:0 0 7px #ffc354;pointer-events:none;
+}
+.particle{
+  position:absolute;width:4px;height:4px;border-radius:50%;background:#ffe8a8;
+  box-shadow:0 0 6px #fff0b8,0 0 13px rgba(255,182,50,.8);pointer-events:none;
+}
+.micro{width:2px;height:2px;background:#fff8db}
+.flash{
+  position:absolute;inset:0;z-index:9;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at var(--rocket-x) var(--rocket-y),
+    rgba(255,252,224,.95) 0 2%,
+    rgba(255,215,118,.52) 5%,
+    rgba(255,172,53,.19) 12%,
+    transparent 30%);
+  mix-blend-mode:screen;
+}
+
+/* final */
+.final{opacity:0;visibility:hidden;justify-content:flex-start;padding-top:14vh}
+.final .small{font-size:11px;letter-spacing:.28em;opacity:.56;margin-bottom:13px}
+.final h3{margin:0;font-size:clamp(55px,14vw,126px);font-weight:760;letter-spacing:.1em;color:#fff2bf;
+  text-shadow:0 0 18px rgba(255,236,176,.7),0 0 48px rgba(255,183,51,.42),0 0 90px rgba(255,128,17,.2)}
+.final p{margin:18px auto 0;max-width:560px;font-size:clamp(14px,3.5vw,20px);line-height:1.75;opacity:.84}
+.final .since{margin-top:12px;font-size:11px;letter-spacing:.1em;opacity:.48}
+
+.replay{
+  position:absolute;bottom:max(18px,env(safe-area-inset-bottom));right:18px;z-index:30;cursor:pointer;
+  border:1px solid rgba(255,255,255,.22);background:rgba(2,8,18,.38);color:#f8f4e8;
+  padding:9px 14px;border-radius:999px;backdrop-filter:blur(8px);opacity:0;visibility:hidden
+}
+
+@keyframes show{to{opacity:1;visibility:visible}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+@keyframes introOut{to{opacity:0;visibility:hidden;transform:scale(.985)}}
+@keyframes hideUp{to{opacity:0;visibility:hidden;transform:translateY(-12px)}}
+
+body.play .intro{animation:introOut .8s ease 3.0s forwards}
+body.play .timeline{animation:show .55s ease 3.25s forwards,hideUp .72s ease 7.85s forwards}
+body.play .qixi-mark{animation:show .55s ease 8.12s forwards,fadeOut .55s ease 9.42s forwards}
+
+@media (max-width:520px){
+  .bg{background-position:50% 50%}
+  .final{padding-top:15vh}
+  .final p{max-width:84vw}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}
+}
 </style>
 </head>
 <body>
-<main id="app"><div class="bg" id="bg"></div><div class="bg-tone"></div><div class="rocket-cast"></div><div class="rocket-light"></div>
-<section class="scene intro"><div class="kicker">THE DAY OUR STORY BEGAN</div><h1>2023.10.14</h1><p>这一天，我们在一起了 <span class="heart">♥</span></p><div class="tiny">从那天开始，时间有了特别的意义</div></section>
-<section class="scene timeline"><div class="caption">从相遇那天，奔向这个七夕</div><div class="days" id="days">1040</div><div class="unit">天后</div><div class="current-date" id="currentDate">2023.10.14</div><div class="progress"><i id="progressFill"></i></div><div class="start-end"><span>2023.10.14</span><span>2026.08.19</span></div></section>
-<section class="scene qixi-mark"><div class="date">2026.08.19</div><h2>七夕</h2><p>而我们，已经一起走过 1040 天</p></section>
-<div class="firework-layer" id="firework"><div class="rocket" id="rocket"></div></div><div class="flash" id="flash"></div>
-<section class="scene final" id="final"><div class="small">HAPPY QIXI · 2026</div><h3>七夕快乐</h3><p>从 2023.10.14 开始，想和你一起看很多很多次烟花，走过很多很多个以后。</p><div class="since">OUR 1040TH DAY TOGETHER</div></section>
-<button class="replay" id="replay">再看一次 ↻</button><div class="vignette"></div></main>
+<main id="app">
+  <div class="bg"></div>
+  <div class="bg-tone"></div>
+  <div class="rocket-cast"></div>
+  <div class="rocket-light"></div>
+
+  <section class="scene intro">
+    <div class="kicker">THE DAY OUR STORY BEGAN</div>
+    <h1>2023.10.14</h1>
+    <p>这一天，我们在一起了 <span class="heart">♥</span></p>
+    <div class="tiny">从那天开始，时间有了特别的意义</div>
+  </section>
+
+  <section class="scene timeline">
+    <div class="caption">从相遇那天，奔向这个七夕</div>
+    <div class="days" id="days">1040</div>
+    <div class="unit">天后</div>
+    <div class="current-date" id="currentDate">2023.10.14</div>
+    <div class="progress"><i id="progressFill"></i></div>
+    <div class="start-end"><span>2023.10.14</span><span>2026.08.19</span></div>
+  </section>
+
+  <section class="scene qixi-mark">
+    <div class="date">2026.08.19</div>
+    <h2>七夕</h2>
+    <p>而我们，已经一起走过 1040 天</p>
+  </section>
+
+  <div class="firework-layer" id="firework">
+    <div class="rocket" id="rocket"></div>
+  </div>
+  <div class="flash" id="flash"></div>
+
+  <section class="scene final" id="final">
+    <div class="small">HAPPY QIXI · 2026</div>
+    <h3>七夕快乐</h3>
+    <p>从 2023.10.14 开始，想和你一起看很多很多次烟花，走过很多很多个以后。</p>
+    <div class="since">OUR 1040TH DAY TOGETHER</div>
+  </section>
+
+  <button class="replay" id="replay">再看一次 ↻</button>
+  <div class="vignette"></div>
+</main>
+
 <script>
-(()=>{const root=document.documentElement,startDate=new Date(2023,9,14),totalDays=1040,daysEl=document.getElementById('days'),dateEl=document.getElementById('currentDate'),progressFill=document.getElementById('progressFill'),firework=document.getElementById('firework'),rocket=document.getElementById('rocket'),flash=document.getElementById('flash'),final=document.getElementById('final'),replay=document.getElementById('replay'),bg=document.getElementById('bg');let timers=[];const later=(fn,ms)=>{const id=setTimeout(fn,ms);timers.push(id);return id};
-function fmt(d){return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`}
-function setBackground(b,s=.82,w=0){root.style.setProperty('--bg-brightness',b.toFixed(3));root.style.setProperty('--bg-saturation',s.toFixed(3));root.style.setProperty('--scene-warmth',w.toFixed(3))}
-function setRocket(x,y,g){root.style.setProperty('--rocket-x',x+'%');root.style.setProperty('--rocket-y',y+'%');root.style.setProperty('--rocket-glow',g.toFixed(3))}
-async function loadBg(){const names=['bg1.txt','bg2.txt','bg3.txt','bg4.txt'];const parts=await Promise.all(names.map(n=>fetch(n).then(r=>{if(!r.ok)throw new Error(n);return r.text()})));bg.style.backgroundImage=`url("data:image/jpeg;base64,${parts.join('').replace(/\s/g,'')}")`}
-function runTimeline(){const duration=3500,started=performance.now();function frame(now){const p=Math.min(1,(now-started)/duration),eased=1-Math.pow(1-p,2),remaining=Math.max(0,Math.round(totalDays*(1-eased))),passed=totalDays-remaining,d=new Date(startDate);d.setDate(d.getDate()+passed);daysEl.textContent=remaining;dateEl.textContent=p>=1?'2026.08.19':fmt(d);progressFill.style.width=(p*100).toFixed(2)+'%';if(p<1)requestAnimationFrame(frame);else{daysEl.textContent='0';dateEl.textContent='2026.08.19';progressFill.style.width='100%'}}requestAnimationFrame(frame)}
-function spawnTrail(x,y,intensity){if(Math.random()>.52)return;const e=document.createElement('i');e.className='trail-spark';e.style.left=`calc(${x}% + ${(Math.random()-.5)*8}px)`;e.style.top=`calc(${y}% + ${10+Math.random()*15}px)`;e.style.opacity=.35+intensity*.55;e.style.transform='translate(-50%,-50%)';e.style.transition='transform .72s ease-out,opacity .72s ease-out';firework.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translate(${(Math.random()-.5)*22}px,${22+Math.random()*22}px)`;e.style.opacity='0'});setTimeout(()=>e.remove(),800)}
-function runRocket(){const duration=3300,started=performance.now();rocket.style.opacity='1';function frame(now){const p=Math.min(1,(now-started)/duration),eased=1-Math.pow(1-p,1.28),x=50+Math.sin(p*Math.PI*1.7)*.22,y=64-34*eased,glow=.12+.78*eased;setRocket(x,y,glow);setBackground(.08+.42*eased,.82+.10*eased,.02+.78*eased);spawnTrail(x,y,glow);if(p<1)requestAnimationFrame(frame);else{rocket.style.opacity='0';setRocket(x,y,0);explode(x,y)}}requestAnimationFrame(frame)}
-function explode(x,y){root.style.setProperty('--rocket-x',x+'%');root.style.setProperty('--rocket-y',y+'%');flash.animate([{opacity:0},{opacity:1,offset:.09},{opacity:.4,offset:.35},{opacity:0}],{duration:950,easing:'ease-out',fill:'forwards'});const bs=performance.now();function burstLight(now){const p=Math.min(1,(now-bs)/850),spike=Math.sin(p*Math.PI);setBackground(.50+spike*.18,.92+spike*.05,.80+spike*.18);if(p<1)requestAnimationFrame(burstLight);else setBackground(.54,.94,.72)}requestAnimationFrame(burstLight);for(let i=0;i<104;i++){const e=document.createElement('i'),a=Math.PI*2*(i/104)+(Math.random()-.5)*.075,r=72+Math.random()*175,dx=Math.cos(a)*r,dy=Math.sin(a)*r;e.className='particle';e.style.left=x+'%';e.style.top=y+'%';e.style.transform='translate(-50%,-50%)';e.style.opacity='1';e.style.transition=`transform ${1.25+Math.random()*.65}s cubic-bezier(.1,.55,.25,1),opacity ${1.38+Math.random()*.55}s ease`;firework.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;e.style.opacity='0'});setTimeout(()=>e.remove(),2300)}for(let i=0;i<58;i++){const e=document.createElement('i'),a=Math.random()*Math.PI*2,r=45+Math.random()*145,dx=Math.cos(a)*r*.72,dy=Math.sin(a)*r*.45+55+Math.random()*85;e.className='particle micro';e.style.left=x+'%';e.style.top=y+'%';e.style.transform='translate(-50%,-50%)';e.style.opacity='.92';e.style.transition=`transform ${1.65+Math.random()*.75}s ease-out,opacity ${1.75+Math.random()*.75}s ease`;firework.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;e.style.opacity='0'});setTimeout(()=>e.remove(),2700)}later(showFinal,720)}
-function showFinal(){const duration=1500,started=performance.now(),from=.54,to=.88,satFrom=.94,satTo=1.02;final.style.visibility='visible';final.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:1200,easing:'ease',fill:'forwards'});function frame(now){const p=Math.min(1,(now-started)/duration),e=1-Math.pow(1-p,2);setBackground(from+(to-from)*e,satFrom+(satTo-satFrom)*e,.72+.18*e);if(p<1)requestAnimationFrame(frame)}requestAnimationFrame(frame);later(()=>{replay.style.visibility='visible';replay.animate([{opacity:0},{opacity:1}],{duration:600,fill:'forwards'})},1250)}
-function run(){document.body.className='play';setBackground(.08,.82,0);setRocket(50,64,0);daysEl.textContent='1040';dateEl.textContent='2023.10.14';progressFill.style.width='0';later(runTimeline,3250);later(runRocket,9700)}
-replay.addEventListener('click',()=>location.reload());window.addEventListener('load',async()=>{try{await loadBg()}catch(e){console.error(e)}setTimeout(run,220)},{once:true})})();
+(() => {
+  const root = document.documentElement;
+  const startDate = new Date(2023,9,14);
+  const totalDays = 1040;
+
+  const daysEl = document.getElementById('days');
+  const dateEl = document.getElementById('currentDate');
+  const progressFill = document.getElementById('progressFill');
+  const firework = document.getElementById('firework');
+  const rocket = document.getElementById('rocket');
+  const flash = document.getElementById('flash');
+  const final = document.getElementById('final');
+  const replay = document.getElementById('replay');
+
+  let timers = [];
+  const later = (fn, ms) => {
+    const id = setTimeout(fn, ms);
+    timers.push(id);
+    return id;
+  };
+
+  function fmt(d){
+    return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function setBackground(brightness, saturation=.82, warmth=0){
+    root.style.setProperty('--bg-brightness', brightness.toFixed(3));
+    root.style.setProperty('--bg-saturation', saturation.toFixed(3));
+    root.style.setProperty('--scene-warmth', warmth.toFixed(3));
+  }
+
+  function setRocket(x,y,glow){
+    root.style.setProperty('--rocket-x', x+'%');
+    root.style.setProperty('--rocket-y', y+'%');
+    root.style.setProperty('--rocket-glow', glow.toFixed(3));
+  }
+
+  /* 数字、日期、进度条全部在同一个 requestAnimationFrame 里更新 */
+  function runTimeline(){
+    const duration = 3500;
+    const started = performance.now();
+
+    function frame(now){
+      const p = Math.min(1,(now-started)/duration);
+      const eased = 1 - Math.pow(1-p,2.0);
+
+      const remaining = Math.max(0, Math.round(totalDays * (1-eased)));
+      const passed = totalDays - remaining;
+      const d = new Date(startDate);
+      d.setDate(d.getDate()+passed);
+
+      daysEl.textContent = String(remaining);
+      dateEl.textContent = p >= 1 ? '2026.08.19' : fmt(d);
+      progressFill.style.width = (p*100).toFixed(2)+'%';
+
+      if(p < 1) requestAnimationFrame(frame);
+      else{
+        daysEl.textContent='0';
+        dateEl.textContent='2026.08.19';
+        progressFill.style.width='100%';
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function spawnTrail(x,y,intensity){
+    if(Math.random() > .52) return;
+    const e = document.createElement('i');
+    e.className='trail-spark';
+    e.style.left = `calc(${x}% + ${(Math.random()-.5)*8}px)`;
+    e.style.top = `calc(${y}% + ${10+Math.random()*15}px)`;
+    e.style.opacity = String(.35 + intensity*.55);
+    e.style.transform='translate(-50%,-50%)';
+    e.style.transition='transform .72s ease-out, opacity .72s ease-out';
+    firework.appendChild(e);
+    requestAnimationFrame(()=>{
+      e.style.transform=`translate(${(Math.random()-.5)*22}px,${22+Math.random()*22}px)`;
+      e.style.opacity='0';
+    });
+    setTimeout(()=>e.remove(),800);
+  }
+
+  /* 火箭从人物头顶上方开始，位置/光晕/背景亮度仍由同一个 p 驱动 */
+  function runRocket(){
+    const duration = 3300;
+    const started = performance.now();
+    rocket.style.opacity='1';
+
+    function frame(now){
+      const p = Math.min(1,(now-started)/duration);
+      const eased = 1 - Math.pow(1-p,1.28);
+
+      const x = 50 + Math.sin(p*Math.PI*1.7)*.22;
+      const y = 64 - 34*eased;
+      const glow = .12 + .78*eased;
+
+      setRocket(x,y,glow);
+
+      /* 倒数结束时仍很暗；烟花越高，背景才逐步亮起来 */
+      const brightness = .08 + .42*eased;
+      const saturation = .82 + .10*eased;
+      const warmth = .02 + .78*eased;
+      setBackground(brightness,saturation,warmth);
+
+      spawnTrail(x,y,glow);
+
+      if(p < 1){
+        requestAnimationFrame(frame);
+      }else{
+        rocket.style.opacity='0';
+        setRocket(x,y,0);
+        explode(x,y);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function explode(x,y){
+    root.style.setProperty('--rocket-x',x+'%');
+    root.style.setProperty('--rocket-y',y+'%');
+
+    flash.animate(
+      [{opacity:0},{opacity:1,offset:.09},{opacity:.4,offset:.35},{opacity:0}],
+      {duration:950,easing:'ease-out',fill:'forwards'}
+    );
+
+    /* 爆炸的一瞬间提亮，但最终“七夕快乐”出现时才达到最高亮度 */
+    const burstStart = performance.now();
+    const burstDuration = 850;
+    function burstLight(now){
+      const p=Math.min(1,(now-burstStart)/burstDuration);
+      const spike = Math.sin(p*Math.PI);
+      setBackground(.50 + spike*.18,.92 + spike*.05,.80 + spike*.18);
+      if(p<1) requestAnimationFrame(burstLight);
+      else setBackground(.54,.94,.72);
+    }
+    requestAnimationFrame(burstLight);
+
+    const count=104;
+    for(let i=0;i<count;i++){
+      const e=document.createElement('i');
+      e.className='particle';
+      const a=Math.PI*2*(i/count)+(Math.random()-.5)*.075;
+      const r=72+Math.random()*175;
+      const dx=Math.cos(a)*r;
+      const dy=Math.sin(a)*r;
+      e.style.left=x+'%';
+      e.style.top=y+'%';
+      e.style.transform='translate(-50%,-50%)';
+      e.style.opacity='1';
+      e.style.transition=`transform ${1.25+Math.random()*.65}s cubic-bezier(.1,.55,.25,1),opacity ${1.38+Math.random()*.55}s ease`;
+      firework.appendChild(e);
+      requestAnimationFrame(()=>{
+        e.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;
+        e.style.opacity='0';
+      });
+      setTimeout(()=>e.remove(),2300);
+    }
+
+    for(let i=0;i<58;i++){
+      const e=document.createElement('i');
+      e.className='particle micro';
+      const a=Math.random()*Math.PI*2;
+      const r=45+Math.random()*145;
+      const dx=Math.cos(a)*r*.72;
+      const dy=Math.sin(a)*r*.45+55+Math.random()*85;
+      e.style.left=x+'%';
+      e.style.top=y+'%';
+      e.style.transform='translate(-50%,-50%)';
+      e.style.opacity='.92';
+      e.style.transition=`transform ${1.65+Math.random()*.75}s ease-out,opacity ${1.75+Math.random()*.75}s ease`;
+      firework.appendChild(e);
+      requestAnimationFrame(()=>{
+        e.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;
+        e.style.opacity='0';
+      });
+      setTimeout(()=>e.remove(),2700);
+    }
+
+    later(showFinal,720);
+  }
+
+  function showFinal(){
+    /* 只有最终文案出现时才真正达到最高亮度 */
+    const duration=1500;
+    const started=performance.now();
+    const from=.54, to=.88;
+    const satFrom=.94, satTo=1.02;
+
+    final.style.visibility='visible';
+    final.animate(
+      [{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],
+      {duration:1200,easing:'ease',fill:'forwards'}
+    );
+
+    function frame(now){
+      const p=Math.min(1,(now-started)/duration);
+      const e=1-Math.pow(1-p,2);
+      setBackground(from+(to-from)*e,satFrom+(satTo-satFrom)*e,.72+.18*e);
+      if(p<1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    later(()=>{
+      replay.style.visibility='visible';
+      replay.animate([{opacity:0},{opacity:1}],{duration:600,fill:'forwards'});
+    },1250);
+  }
+
+  function run(){
+    document.body.className='play';
+    setBackground(.08,.82,0);
+    setRocket(50,64,0);
+    daysEl.textContent='1040';
+    dateEl.textContent='2023.10.14';
+    progressFill.style.width='0';
+
+    /* timeline 可见后数字和进度条同时开始 */
+    later(runTimeline,3250);
+
+    /* 倒数 3.5s，在 0 天处完整停留 1s；再给七夕提示留一段时间，然后进入烟花 */
+    later(runRocket,9700);
+  }
+
+  replay.addEventListener('click',()=>location.reload());
+  window.addEventListener('load',()=>setTimeout(run,220),{once:true});
+})();
 </script>
-</body></html>
+</body>
+</html>
